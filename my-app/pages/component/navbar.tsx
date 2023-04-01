@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-
+import {AiOutlineMenu} from 'react-icons/ai';
 const Navbar = () => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,8 +22,12 @@ const Navbar = () => {
 
   return (
     <nav className="flex flex-wrap items-center justify-between bg-gradient-to-r from-green-400 to-blue-500 px-4 py-3">
+      <AiOutlineMenu
+        className=" text-xl md:hidden"
+        onClick={handleMenuClick}
+        />
       <div className="flex items-center">
-        <Link href="/" className="text-xl font-bold text-white mr-6">
+        <Link href="/" className="text-xl font-bold text-white mr-10 md:mr-6">
           Event Planner
         </Link>
 
@@ -34,7 +38,7 @@ const Navbar = () => {
               placeholder="Search"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
-              className="px-3 py-2 rounded-lg bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:shadow-outline"
+              className="px-3 w-40 md:w-64 py-2 rounded-lg bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:shadow-outline"
             />
             <button
               type="submit"
@@ -59,13 +63,6 @@ const Navbar = () => {
           </div>
         </form>
       </div>
-
-      <button
-        className="block sm:hidden border border-white rounded px-2 py-1"
-        onClick={handleMenuClick}
-      >
-        {isMenuOpen ? "Close" : "Menu"}
-      </button>
 
       <div
         className={`${
