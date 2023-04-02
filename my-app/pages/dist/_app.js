@@ -12,11 +12,12 @@ var __assign = (this && this.__assign) || function () {
 };
 exports.__esModule = true;
 require("@/styles/globals.css");
-var navbar_1 = require("../pages/component/navbar");
+var react_1 = require("react");
 function App(_a) {
     var Component = _a.Component, pageProps = _a.pageProps;
+    react_1.useEffect(function () {
+    }, []);
     return React.createElement(React.Fragment, null,
-        React.createElement(navbar_1["default"], null),
         React.createElement(Component, __assign({}, pageProps)));
 }
 exports["default"] = App;

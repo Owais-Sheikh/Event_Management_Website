@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import {AiOutlineMenu} from 'react-icons/ai';
+import {MdAccountCircle} from 'react-icons/md';
 const Navbar = () => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,13 +68,14 @@ const Navbar = () => {
       <div
         className={`${
           isMenuOpen ? "block" : "hidden"
-        } sm:flex flex-grow sm:flex-grow-0 mt-4 sm:mt-0`}
+        } sm:flex flex-grow sm:flex-grow-0 md:items-center mt-4 sm:mt-0`}
       >
         <ul className="sm:flex flex-row">
           <NavItem href="/" label="Home" active={router.pathname === "/"} />
           <NavItem href="/about" label="Events" active={router.pathname === "/about"} />
           <NavItem href="/contact" label="Contact" active={router.pathname === "/contact"} />
         </ul>
+        <Link href={'/Login'}><MdAccountCircle className='text-3xl text-white' /></Link>
       </div>
     </nav>
   );

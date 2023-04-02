@@ -6,6 +6,8 @@ import bg from '../public/first.jpg'
 import bg1 from '../public/second.jpg'
 import bg2 from '../public/third.jpg'
 import bg3 from '../public/forth.jpg'
+import Navbar from '../pages/component/navbar'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +22,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Navbar/>
       <main className="container  px-4 md:px-10 bg-cover bg-center bg-[url('../public/aditya-chinchure-ZhQCZjr9fHo-unsplash.jpg')] h-64 md:h-96">
         <div className="md:w-full text-center py-14 md:py-24">
           <h1 className='text-2xl md:text-5xl font-bold md:font-bold mb-7 md:mb-10 text-white'>Life is an event. Make it memorable.</h1>

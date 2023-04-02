@@ -4,6 +4,7 @@ var link_1 = require("next/link");
 var router_1 = require("next/router");
 var react_1 = require("react");
 var ai_1 = require("react-icons/ai");
+var md_1 = require("react-icons/md");
 var Navbar = function () {
     var router = router_1.useRouter();
     var _a = react_1.useState(false), isMenuOpen = _a[0], setIsMenuOpen = _a[1];
@@ -29,11 +30,13 @@ var Navbar = function () {
                         React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className: "feather feather-search" },
                             React.createElement("circle", { cx: "11", cy: "11", r: "8" }),
                             React.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" })))))),
-        React.createElement("div", { className: (isMenuOpen ? "block" : "hidden") + " sm:flex flex-grow sm:flex-grow-0 mt-4 sm:mt-0" },
+        React.createElement("div", { className: (isMenuOpen ? "block" : "hidden") + " sm:flex flex-grow sm:flex-grow-0 md:items-center mt-4 sm:mt-0" },
             React.createElement("ul", { className: "sm:flex flex-row" },
                 React.createElement(NavItem, { href: "/", label: "Home", active: router.pathname === "/" }),
                 React.createElement(NavItem, { href: "/about", label: "Events", active: router.pathname === "/about" }),
-                React.createElement(NavItem, { href: "/contact", label: "Contact", active: router.pathname === "/contact" })))));
+                React.createElement(NavItem, { href: "/contact", label: "Contact", active: router.pathname === "/contact" })),
+            React.createElement(link_1["default"], { href: '/Login' },
+                React.createElement(md_1.MdAccountCircle, { className: 'text-3xl text-white' })))));
 };
 var NavItem = function (_a) {
     var href = _a.href, label = _a.label, active = _a.active;
