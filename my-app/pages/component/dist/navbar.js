@@ -5,10 +5,13 @@ var router_1 = require("next/router");
 var react_1 = require("react");
 var ai_1 = require("react-icons/ai");
 var md_1 = require("react-icons/md");
-var Navbar = function () {
+var Home_module_css_1 = require("@/styles/Home.module.css");
+var Navbar = function (props) {
     var router = router_1.useRouter();
     var _a = react_1.useState(false), isMenuOpen = _a[0], setIsMenuOpen = _a[1];
     var _b = react_1.useState(""), searchQuery = _b[0], setSearchQuery = _b[1];
+    var _c = react_1.useState(false), dropdown = _c[0], setdropdown = _c[1];
+    console.log(props.token.value);
     var handleMenuClick = function () {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -19,7 +22,7 @@ var Navbar = function () {
             setSearchQuery("");
         }
     };
-    return (React.createElement("nav", { className: "flex flex-wrap items-center justify-between bg-gradient-to-r from-green-400 to-blue-500 px-4 py-3" },
+    return (React.createElement("nav", { className: "stic flex flex-wrap items-center justify-between bg-gradient-to-r from-green-400 to-blue-500 px-4 py-3" },
         React.createElement(ai_1.AiOutlineMenu, { className: " text-xl md:hidden", onClick: handleMenuClick }),
         React.createElement("div", { className: "flex items-center" },
             React.createElement(link_1["default"], { href: "/", className: "text-xl font-bold text-white mr-10 md:mr-6" }, "Event Planner"),
@@ -33,10 +36,15 @@ var Navbar = function () {
         React.createElement("div", { className: (isMenuOpen ? "block" : "hidden") + " sm:flex flex-grow sm:flex-grow-0 md:items-center mt-4 sm:mt-0" },
             React.createElement("ul", { className: "sm:flex flex-row" },
                 React.createElement(NavItem, { href: "/", label: "Home", active: router.pathname === "/" }),
-                React.createElement(NavItem, { href: "/about", label: "Events", active: router.pathname === "/about" }),
+                React.createElement(NavItem, { href: props.token.value ? '/events' : '/Login', label: "Events", active: router.pathname === "/events" }),
                 React.createElement(NavItem, { href: "/contact", label: "Contact", active: router.pathname === "/contact" })),
-            React.createElement(link_1["default"], { href: '/Login' },
-                React.createElement(md_1.MdAccountCircle, { className: 'text-3xl text-white' })))));
+            props.token.value && React.createElement(md_1.MdAccountCircle, { onMouseOver: function () { setdropdown(true); }, onMouseLeave: function () { setdropdown(false); }, className: 'text-3xl text-white cursor-pointer' }),
+            dropdown && React.createElement("div", { onMouseOver: function () { setdropdown(true); }, onMouseLeave: function () { setdropdown(false); }, className: "bg-white absolute right-5 top-11 p-4" },
+                React.createElement("ul", null,
+                    React.createElement("li", { className: "cursor-pointer hover:text-gray-500 text-black font-bold text-sm mb-2" }, "My Account"),
+                    React.createElement("li", { onClick: props.logOut, className: "cursor-pointer hover:text-gray-500 text-black font-bold  text-sm" }, "LogOut"))),
+            !props.token.value && React.createElement(link_1["default"], { href: '/Login' },
+                React.createElement("button", { className: Home_module_css_1["default"].button }, " Login ")))));
 };
 var NavItem = function (_a) {
     var href = _a.href, label = _a.label, active = _a.active;

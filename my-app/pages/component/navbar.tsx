@@ -3,10 +3,14 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import {AiOutlineMenu} from 'react-icons/ai';
 import {MdAccountCircle} from 'react-icons/md';
-const Navbar = () => {
+import styles from '@/styles/Home.module.css'
+
+const Navbar = (props:any) => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [dropdown, setdropdown] = useState<boolean>(false)
+  console.log(props.token.value);
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -22,7 +26,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-between bg-gradient-to-r from-green-400 to-blue-500 px-4 py-3">
+    <nav className="stic flex flex-wrap items-center justify-between bg-gradient-to-r from-green-400 to-blue-500 px-4 py-3">
       <AiOutlineMenu
         className=" text-xl md:hidden"
         onClick={handleMenuClick}
@@ -72,10 +76,17 @@ const Navbar = () => {
       >
         <ul className="sm:flex flex-row">
           <NavItem href="/" label="Home" active={router.pathname === "/"} />
-          <NavItem href="/about" label="Events" active={router.pathname === "/about"} />
+          <NavItem href={props.token.value? '/events':'/Login'} label="Events" active={router.pathname === "/events"} />
           <NavItem href="/contact" label="Contact" active={router.pathname === "/contact"} />
         </ul>
-        <Link href={'/Login'}><MdAccountCircle className='text-3xl text-white' /></Link>
+        {props.token.value && <MdAccountCircle onMouseOver={()=>{setdropdown(true)}} onMouseLeave={()=>{setdropdown(false)}} className='text-3xl text-white cursor-pointer' />}
+        {dropdown && <div onMouseOver={()=>{setdropdown(true)}} onMouseLeave={()=>{setdropdown(false)}} className="bg-white absolute right-5 top-11 p-4">
+          <ul>
+            <li className="cursor-pointer hover:text-gray-500 text-black font-bold text-sm mb-2">My Account</li>
+            <li onClick={props.logOut} className="cursor-pointer hover:text-gray-500 text-black font-bold  text-sm">LogOut</li>
+          </ul>
+        </div>}
+        {!props.token.value && <Link href={'/Login'}><button className={styles.button}> Login </button></Link>}
       </div>
     </nav>
   );
