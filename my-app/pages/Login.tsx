@@ -52,7 +52,7 @@ const Login = () => {
       setTimeout(() => {
         router.push('http://localhost:3000')
         localStorage.setItem("token" , responce.token)
-      }, 3000);
+      }, 1000);
     }
     else {
       toast.error('Invalid input 😔', {

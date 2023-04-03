@@ -95,7 +95,7 @@ var Login = function () {
                         setTimeout(function () {
                             router.push('http://localhost:3000');
                             localStorage.setItem("token", responce.token);
-                        }, 3000);
+                        }, 1000);
                     }
                     else {
                         react_toastify_1.toast.error('Invalid input 😔', {

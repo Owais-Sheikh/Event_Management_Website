@@ -42,6 +42,7 @@ var Navbar = function (props) {
             dropdown && React.createElement("div", { onMouseOver: function () { setdropdown(true); }, onMouseLeave: function () { setdropdown(false); }, className: "bg-white absolute right-5 top-11 p-4" },
                 React.createElement("ul", null,
                     React.createElement("li", { className: "cursor-pointer hover:text-gray-500 text-black font-bold text-sm mb-2" }, "My Account"),
+                    React.createElement("li", { className: "cursor-pointer hover:text-gray-500 text-black font-bold text-sm mb-2" }, "My Events"),
                     React.createElement("li", { onClick: props.logOut, className: "cursor-pointer hover:text-gray-500 text-black font-bold  text-sm" }, "LogOut"))),
             !props.token.value && React.createElement(link_1["default"], { href: '/Login' },
                 React.createElement("button", { className: Home_module_css_1["default"].button }, " Login ")))));

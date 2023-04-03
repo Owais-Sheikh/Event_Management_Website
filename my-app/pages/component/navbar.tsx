@@ -83,6 +83,7 @@ const Navbar = (props:any) => {
         {dropdown && <div onMouseOver={()=>{setdropdown(true)}} onMouseLeave={()=>{setdropdown(false)}} className="bg-white absolute right-5 top-11 p-4">
           <ul>
             <li className="cursor-pointer hover:text-gray-500 text-black font-bold text-sm mb-2">My Account</li>
+            <li className="cursor-pointer hover:text-gray-500 text-black font-bold text-sm mb-2">My Events</li>
             <li onClick={props.logOut} className="cursor-pointer hover:text-gray-500 text-black font-bold  text-sm">LogOut</li>
           </ul>
         </div>}
