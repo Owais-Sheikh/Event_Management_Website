@@ -13,22 +13,18 @@ const handler = async (
     res: NextApiResponse
 ) => {
     if (req.method == 'POST') {
-        let getEvent:any = [];
-        getEvent = await event.find({ "email": req.body.email });
-        if (getEvent) {
-            if (req.body.email == getEvent.email) {
-                res.status(200).json({ success: 'success', eventType: event.email })
-            }
-            else{
-                res.status(400).json({ error: ' Doe' })
-
-            }
+        const getEvent = await event.find({ "email": req.body.email });
+        var item:number = 0;
+        // if(getEvent){
+            for(item of getEvent){    
+                console.log(getEvent[item])
+                item++;
         }
-        else{
+          }      
+        //   else{
+            // res.status(400).json({ error: 'John Doe' })
 
-            res.status(400).json({ error: 'John Doe' })
-        }
-    }
-}
+          }
+
 
 export default connectDB(handler)

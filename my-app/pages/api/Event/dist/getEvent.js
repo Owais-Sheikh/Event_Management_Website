@@ -39,25 +39,20 @@ exports.__esModule = true;
 var mongoose_1 = require("@/middlayer/mongoose");
 var event_1 = require("@/tables/event");
 var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var getEvent;
+    var getEvent, item, _i, getEvent_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 if (!(req.method == 'POST')) return [3 /*break*/, 2];
-                getEvent = [];
                 return [4 /*yield*/, event_1["default"].find({ "email": req.body.email })];
             case 1:
                 getEvent = _a.sent();
-                if (getEvent) {
-                    if (req.body.email == getEvent.email) {
-                        res.status(200).json({ success: 'success', eventType: event_1["default"].email });
-                    }
-                    else {
-                        res.status(400).json({ error: ' Doe' });
-                    }
-                }
-                else {
-                    res.status(400).json({ error: 'John Doe' });
+                item = 0;
+                // if(getEvent){
+                for (_i = 0, getEvent_1 = getEvent; _i < getEvent_1.length; _i++) {
+                    item = getEvent_1[_i];
+                    console.log(getEvent[item]);
+                    item++;
                 }
                 _a.label = 2;
             case 2: return [2 /*return*/];

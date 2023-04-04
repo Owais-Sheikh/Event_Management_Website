@@ -31,6 +31,6 @@ function App(_a) {
     };
     return React.createElement(React.Fragment, null,
         React.createElement(navbar_1["default"], { logOut: logOut, token: token }),
-        React.createElement(Component, __assign({}, pageProps)));
+        React.createElement(Component, __assign({}, pageProps, { token: token })));
 }
 exports["default"] = App;

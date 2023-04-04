@@ -11,7 +11,6 @@ var Navbar = function (props) {
     var _a = react_1.useState(false), isMenuOpen = _a[0], setIsMenuOpen = _a[1];
     var _b = react_1.useState(""), searchQuery = _b[0], setSearchQuery = _b[1];
     var _c = react_1.useState(false), dropdown = _c[0], setdropdown = _c[1];
-    console.log(props.token.value);
     var handleMenuClick = function () {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -39,10 +38,11 @@ var Navbar = function (props) {
                 React.createElement(NavItem, { href: props.token.value ? '/events' : '/Login', label: "Events", active: router.pathname === "/events" }),
                 React.createElement(NavItem, { href: "/contact", label: "Contact", active: router.pathname === "/contact" })),
             props.token.value && React.createElement(md_1.MdAccountCircle, { onMouseOver: function () { setdropdown(true); }, onMouseLeave: function () { setdropdown(false); }, className: 'text-3xl text-white cursor-pointer' }),
-            dropdown && React.createElement("div", { onMouseOver: function () { setdropdown(true); }, onMouseLeave: function () { setdropdown(false); }, className: "bg-white absolute right-5 top-11 p-4" },
+            props.token.value && dropdown && React.createElement("div", { onMouseOver: function () { setdropdown(true); }, onMouseLeave: function () { setdropdown(false); }, className: "bg-white absolute right-5 top-11 p-4" },
                 React.createElement("ul", null,
                     React.createElement("li", { className: "cursor-pointer hover:text-gray-500 text-black font-bold text-sm mb-2" }, "My Account"),
-                    React.createElement("li", { className: "cursor-pointer hover:text-gray-500 text-black font-bold text-sm mb-2" }, "My Events"),
+                    React.createElement(link_1["default"], { href: '/myEvents' },
+                        React.createElement("li", { className: "cursor-pointer hover:text-gray-500 text-black font-bold text-sm mb-2" }, "My Events")),
                     React.createElement("li", { onClick: props.logOut, className: "cursor-pointer hover:text-gray-500 text-black font-bold  text-sm" }, "LogOut"))),
             !props.token.value && React.createElement(link_1["default"], { href: '/Login' },
                 React.createElement("button", { className: Home_module_css_1["default"].button }, " Login ")))));

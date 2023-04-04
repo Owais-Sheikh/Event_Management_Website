@@ -20,6 +20,6 @@ export default function App({ Component, pageProps }: AppProps) {
   
   return <>
   <Navbar logOut = {logOut} token={token}/>
-  <Component {...pageProps} />
+  <Component {...pageProps} token={token} />
   </>
 }
