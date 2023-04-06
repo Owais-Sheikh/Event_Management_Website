@@ -89,6 +89,15 @@ const events = (props:any) => {
       setTimeout(() => {
         router.push('http://localhost:3000/myEvents')
       }, 2000);
+      setname('');
+    setemail('');
+    setevenType('');
+    seteventDesc('');
+    setphone('');
+    setStime('');
+    setEtime('');
+    setdate('');
+    setTGuest('');
     }
     else {
       toast.error('Date not available 😔', {
@@ -102,15 +111,6 @@ const events = (props:any) => {
         theme: "dark",
       });
     }
-    setname('');
-    setemail('');
-    setevenType('');
-    seteventDesc('');
-    setphone('');
-    setStime('');
-    setEtime('');
-    setdate('');
-    setTGuest('');
   }
   return (
     <div className="px-16 container bg-fixed bg-cover bg-center bg-[url('../public/aditya-chinchure-ZhQCZjr9fHo-unsplash.jpg')] h-64 md:h-96">
@@ -140,7 +140,7 @@ const events = (props:any) => {
           <input className={`${styles.input} mr-10 mb-14`} onChange={setValue} value={email} name="email" type="email" required /></div>
         <div className='flex items-start flex-col'>
           <label className='mb-2 text-green-800 font-semibold' htmlFor="">Phone</label>
-          <PhoneInput className={`${styles.input} mr-10 mb-14`} country={'pk'} value={phone} onChange={phone => setphone(phone)} /></div>
+          <PhoneInput className={`${styles.input} mr-16 mb-14`} country={'pk'} value={phone} onChange={phone => setphone(phone)} /></div>
         <div className='flex items-start flex-col'>
           <label className='mb-2 text-green-800 font-semibold' htmlFor="">Event Type</label>
           <input className={`${styles.input} mr-10 mb-14`} onChange={setValue} value={eventType} name="EventType" type="text" required /></div>

@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import SortBy from 'sort-by'
 import React, { useEffect, useState } from 'react'
 import mongoose from "mongoose";
 import event from '@/tables/event'
@@ -19,7 +20,7 @@ const myEvents = (props: any):any => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [sorting, setsorting] = useState<boolean>(true)
   const [dropFilter, setdropFilter] = useState<boolean>(false)
-
+  console.log(props.event);
   var c = Object.values(props.event);
   const sortByName = () => {
     var byName: any = c.sort(function (a:any, b:any) {
@@ -30,9 +31,7 @@ const myEvents = (props: any):any => {
     return byName;
   }
   const sortByDate = () =>{
-    var byDate: any = c.sort(function(a:any,b:any){
-      return b.eventDate - a.eventDate
-    })
+    var byDate:any =  c.sort(SortBy('eventDate'));
     return byDate;
   }
 

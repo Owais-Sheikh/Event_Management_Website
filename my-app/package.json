@@ -26,6 +26,7 @@
     "react-toastify": "^9.1.2",
     "sidebarjs": "^10.0.0",
     "slider-pro-js": "^1.0.1",
+    "sort-by": "^1.2.0",
     "typescript": "5.0.2",
     "validator": "^13.9.0"
   },

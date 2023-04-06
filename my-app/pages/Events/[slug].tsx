@@ -10,10 +10,10 @@ import 'react-toastify/dist/ReactToastify.css';
 const slug = (props:any) => {
   const router = useRouter();
   useEffect(() => {
-    localStorage.setItem("slug" , JSON.stringify(props.event));
     if(!props.token.value){
-      router.push('http//:localhost:3000');
+      router.push('http://localhost:3000');
     }
+    localStorage.setItem("slug" , JSON.stringify(props.event));
   }, [props.event, props.token.value, router, router.query])
   
     const deleteEvent = async (e: any) => {

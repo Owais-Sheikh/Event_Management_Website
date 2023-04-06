@@ -13,6 +13,8 @@ const handler = async (
     res: NextApiResponse<Data>
 ) => {
     if (req.method == 'POST') {
+        const getEvent = await event.find({ "eventDate": req.body.eventDate });
+        if(getEvent.length < 5){
         var addEvent = new event({
             name: req.body.name,
             email: req.body.email,
@@ -26,6 +28,10 @@ const handler = async (
         })
         await addEvent.save();
         res.status(200).json({ success: 'success' })
+    }
+    else{
+        res.status(400).json({ error: 'error' })
+    }
     }
     else{
         res.status(400).json({ error: 'error' })

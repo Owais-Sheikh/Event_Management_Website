@@ -128,6 +128,15 @@ var events = function (props) {
                         setTimeout(function () {
                             router.push('http://localhost:3000/myEvents');
                         }, 2000);
+                        setname('');
+                        setemail('');
+                        setevenType('');
+                        seteventDesc('');
+                        setphone('');
+                        setStime('');
+                        setEtime('');
+                        setdate('');
+                        setTGuest('');
                     }
                     else {
                         react_toastify_1.toast.error('Date not available 😔', {
@@ -141,15 +150,6 @@ var events = function (props) {
                             theme: "dark"
                         });
                     }
-                    setname('');
-                    setemail('');
-                    setevenType('');
-                    seteventDesc('');
-                    setphone('');
-                    setStime('');
-                    setEtime('');
-                    setdate('');
-                    setTGuest('');
                     return [2 /*return*/];
             }
         });
@@ -169,7 +169,7 @@ var events = function (props) {
                     react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: email, name: "email", type: "email", required: true })),
                 react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
                     react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Phone"),
-                    react_1["default"].createElement(react_phone_input_2_1["default"], { className: event_module_css_1["default"].input + " mr-10 mb-14", country: 'pk', value: phone, onChange: function (phone) { return setphone(phone); } })),
+                    react_1["default"].createElement(react_phone_input_2_1["default"], { className: event_module_css_1["default"].input + " mr-16 mb-14", country: 'pk', value: phone, onChange: function (phone) { return setphone(phone); } })),
                 react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
                     react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Event Type"),
                     react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: eventType, name: "EventType", type: "text", required: true })),

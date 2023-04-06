@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.getServerSideProps = void 0;
 /* eslint-disable react-hooks/rules-of-hooks */
+var sort_by_1 = require("sort-by");
 var react_1 = require("react");
 var mongoose_1 = require("mongoose");
 var event_1 = require("@/tables/event");
@@ -55,6 +56,7 @@ var myEvents = function (props) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     var _a = react_1.useState(true), sorting = _a[0], setsorting = _a[1];
     var _b = react_1.useState(false), dropFilter = _b[0], setdropFilter = _b[1];
+    console.log(props.event);
     var c = Object.values(props.event);
     var sortByName = function () {
         var byName = c.sort(function (a, b) {
@@ -65,9 +67,7 @@ var myEvents = function (props) {
         return byName;
     };
     var sortByDate = function () {
-        var byDate = c.sort(function (a, b) {
-            return b.eventDate - a.eventDate;
-        });
+        var byDate = c.sort(sort_by_1["default"]('eventDate'));
         return byDate;
     };
     return (react_1["default"].createElement(react_1["default"].Fragment, null,

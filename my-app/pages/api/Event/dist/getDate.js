@@ -36,42 +36,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var event_1 = require("../../../tables/event");
 var mongoose_1 = require("@/middlayer/mongoose");
+var event_1 = require("@/tables/event");
 var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var getEvent, addEvent;
+    var getEvent;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                if (!(req.method == 'POST')) return [3 /*break*/, 5];
-                return [4 /*yield*/, event_1["default"].find({ "eventDate": req.body.eventDate })];
+                if (!(req.method == 'POST')) return [3 /*break*/, 2];
+                return [4 /*yield*/, event_1["default"].find({ "email": req.body.eventDate })];
             case 1:
                 getEvent = _a.sent();
-                if (!(getEvent.length < 5)) return [3 /*break*/, 3];
-                addEvent = new event_1["default"]({
-                    name: req.body.name,
-                    email: req.body.email,
-                    phone: req.body.phone,
-                    eventType: req.body.eventType,
-                    eventdesc: req.body.eventdesc,
-                    eventDate: req.body.eventDate,
-                    startTime: req.body.startTime,
-                    endTime: req.body.endTime,
-                    totalGuest: req.body.totalGuest
-                });
-                return [4 /*yield*/, addEvent.save()];
+                res.status(400).json({ success: 'John Doe' });
+                return [3 /*break*/, 3];
             case 2:
-                _a.sent();
-                res.status(200).json({ success: 'success' });
-                return [3 /*break*/, 4];
-            case 3:
-                res.status(400).json({ error: 'error' });
-                _a.label = 4;
-            case 4: return [3 /*break*/, 6];
-            case 5:
-                res.status(400).json({ error: 'error' });
-                _a.label = 6;
-            case 6: return [2 /*return*/];
+                res.status(400).json({ error: 'John Doe' });
+                _a.label = 3;
+            case 3: return [2 /*return*/];
         }
     });
 }); };
