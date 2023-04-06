@@ -43,9 +43,17 @@ var mongoose_1 = require("mongoose");
 var event_1 = require("@/tables/event");
 var fi_1 = require("react-icons/fi");
 var event_module_css_1 = require("../styles/event.module.css");
+var link_1 = require("next/link");
+var router_1 = require("next/router");
 var myEvents = function (props) {
+    var router = router_1.useRouter();
+    react_1.useEffect(function () {
+        if (!props.token.value) {
+            router.push('http://localhost:3000');
+        }
+    }, [props.token.value, router, router.query]);
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    var _a = react_1.useState(false), sorting = _a[0], setsorting = _a[1];
+    var _a = react_1.useState(true), sorting = _a[0], setsorting = _a[1];
     var _b = react_1.useState(false), dropFilter = _b[0], setdropFilter = _b[1];
     var c = Object.values(props.event);
     var sortByName = function () {
@@ -75,38 +83,42 @@ var myEvents = function (props) {
             react_1["default"].createElement("div", { className: "container px-5 py-24 mx-auto" },
                 react_1["default"].createElement("div", { className: "flex flex-wrap -m-4" },
                     sorting && Object.keys(sortByName()).map(function (item) {
-                        return react_1["default"].createElement("div", { className: "p-4 md:w-1/3", key: sortByName()[item]._id },
-                            react_1["default"].createElement("div", { className: "h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden" },
-                                react_1["default"].createElement("img", { className: "lg:h-48 md:h-36 w-full object-cover object-center", src: "https://dummyimage.com/720x400", alt: "blog" }),
-                                react_1["default"].createElement("div", { className: "p-6" },
-                                    react_1["default"].createElement("h2", { className: "tracking-widest text-xs title-font font-medium text-gray-400 mb-1" }, "CATEGORY"),
-                                    react_1["default"].createElement("h1", { className: "title-font text-lg font-medium text-gray-900 mb-3" }, sortByName()[item].eventType),
-                                    react_1["default"].createElement("p", { className: "leading-relaxed mb-3" }, sortByName()[item].eventdesc),
-                                    react_1["default"].createElement("div", { className: "flex items-center flex-wrap " },
-                                        react_1["default"].createElement("a", { className: "text-green-500 inline-flex items-center md:mb-2 lg:mb-0" },
-                                            "Learn More",
-                                            react_1["default"].createElement("svg", { className: "w-4 h-4 ml-2", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: "2", fill: "none", strokeLinecap: "round", strokeLinejoin: "round" },
-                                                react_1["default"].createElement("path", { d: "M5 12h14" }),
-                                                react_1["default"].createElement("path", { d: "M12 5l7 7-7 7" }))),
-                                        react_1["default"].createElement("span", { className: "text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200" }, sortByName()[item].eventDate),
-                                        react_1["default"].createElement("span", { className: "text-gray-400 inline-flex items-center leading-none text-sm" }, sortByName()[item].totalGuest)))));
+                        return react_1["default"].createElement(link_1["default"], { href: "http://localhost:3000/Events/" + sortByName()[item].uniqueId, key: sortByName()[item]._id, className: "p-4 md:w-1/3" },
+                            react_1["default"].createElement("div", null,
+                                react_1["default"].createElement("div", { className: "h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden" },
+                                    react_1["default"].createElement("img", { className: "lg:h-48 md:h-36 w-full object-cover object-center", src: "https://dummyimage.com/720x400", alt: "blog" }),
+                                    react_1["default"].createElement("div", { className: "p-6" },
+                                        react_1["default"].createElement("h2", { className: "tracking-widest text-xs title-font font-medium text-gray-400 mb-1" }, "CATEGORY"),
+                                        react_1["default"].createElement("h1", { className: "title-font text-lg font-medium text-gray-900 mb-3" }, sortByName()[item].eventType),
+                                        react_1["default"].createElement("p", { className: "leading-relaxed mb-3" },
+                                            sortByName()[item].eventdesc.substr(0, 100),
+                                            "..."),
+                                        react_1["default"].createElement("div", { className: "flex items-center flex-wrap " },
+                                            react_1["default"].createElement("div", { className: "text-green-500 inline-flex items-center md:mb-2 lg:mb-0" },
+                                                "Learn More",
+                                                react_1["default"].createElement("svg", { className: "w-4 h-4 ml-2", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: "2", fill: "none", strokeLinecap: "round", strokeLinejoin: "round" },
+                                                    react_1["default"].createElement("path", { d: "M5 12h14" }),
+                                                    react_1["default"].createElement("path", { d: "M12 5l7 7-7 7" }))),
+                                            react_1["default"].createElement("span", { className: "text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200" }, sortByName()[item].eventDate),
+                                            react_1["default"].createElement("span", { className: "text-gray-400 inline-flex items-center leading-none text-sm" }, sortByName()[item].totalGuest))))));
                     }),
                     !sorting && Object.keys(sortByDate()).map(function (item) {
-                        return react_1["default"].createElement("div", { className: "p-4 md:w-1/3", key: sortByName()[item]._id },
-                            react_1["default"].createElement("div", { className: "h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden" },
-                                react_1["default"].createElement("img", { className: "lg:h-48 md:h-36 w-full object-cover object-center", src: "https://dummyimage.com/720x400", alt: "blog" }),
-                                react_1["default"].createElement("div", { className: "p-6" },
-                                    react_1["default"].createElement("h2", { className: "tracking-widest text-xs title-font font-medium text-gray-400 mb-1" }, "CATEGORY"),
-                                    react_1["default"].createElement("h1", { className: "title-font text-lg font-medium text-gray-900 mb-3" }, sortByDate()[item].eventType),
-                                    react_1["default"].createElement("p", { className: "leading-relaxed mb-3" }, sortByDate()[item].eventdesc),
-                                    react_1["default"].createElement("div", { className: "flex items-center flex-wrap " },
-                                        react_1["default"].createElement("a", { className: "text-green-500 inline-flex items-center md:mb-2 lg:mb-0" },
-                                            "Learn More",
-                                            react_1["default"].createElement("svg", { className: "w-4 h-4 ml-2", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: "2", fill: "none", strokeLinecap: "round", strokeLinejoin: "round" },
-                                                react_1["default"].createElement("path", { d: "M5 12h14" }),
-                                                react_1["default"].createElement("path", { d: "M12 5l7 7-7 7" }))),
-                                        react_1["default"].createElement("span", { className: "text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200" }, sortByDate()[item].eventDate),
-                                        react_1["default"].createElement("span", { className: "text-gray-400 inline-flex items-center leading-none text-sm" }, sortByDate()[item].totalGuest)))));
+                        return react_1["default"].createElement(link_1["default"], { key: sortByDate()[item]._id, href: "http://localhost:3000/Events/" + sortByDate()[item].uniqueId, className: "p-4 md:w-1/3" },
+                            react_1["default"].createElement("div", null,
+                                react_1["default"].createElement("div", { className: "h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden" },
+                                    react_1["default"].createElement("img", { className: "lg:h-48 md:h-36 w-full object-cover object-center", src: "https://dummyimage.com/720x400", alt: "blog" }),
+                                    react_1["default"].createElement("div", { className: "p-6" },
+                                        react_1["default"].createElement("h2", { className: "tracking-widest text-xs title-font font-medium text-gray-400 mb-1" }, "CATEGORY"),
+                                        react_1["default"].createElement("h1", { className: "title-font text-lg font-medium text-gray-900 mb-3" }, sortByDate()[item].eventType),
+                                        react_1["default"].createElement("p", { className: "leading-relaxed mb-3" }, sortByDate()[item].eventdesc.substr(0, 100)),
+                                        react_1["default"].createElement("div", { className: "flex items-center flex-wrap " },
+                                            react_1["default"].createElement("a", { className: "text-green-500 inline-flex items-center md:mb-2 lg:mb-0" },
+                                                "Learn More",
+                                                react_1["default"].createElement("svg", { className: "w-4 h-4 ml-2", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: "2", fill: "none", strokeLinecap: "round", strokeLinejoin: "round" },
+                                                    react_1["default"].createElement("path", { d: "M5 12h14" }),
+                                                    react_1["default"].createElement("path", { d: "M12 5l7 7-7 7" }))),
+                                            react_1["default"].createElement("span", { className: "text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200" }, sortByDate()[item].eventDate),
+                                            react_1["default"].createElement("span", { className: "text-gray-400 inline-flex items-center leading-none text-sm" }, sortByDate()[item].totalGuest))))));
                     }))))));
 };
 function getServerSideProps() {
@@ -123,11 +135,6 @@ function getServerSideProps() {
                 case 2: return [4 /*yield*/, event_1["default"].find({ "email": "owaisshk1501@gmail.com" })];
                 case 3:
                     getEvent = _a.sent();
-                    // var hello:any = {};
-                    // var item:any;
-                    // for(item of getEvent){
-                    //   hello[item.eventType] = JSON.parse(JSON.stringify(item))
-                    // }
                     return [2 /*return*/, {
                             props: { event: JSON.parse(JSON.stringify(getEvent)) } // will be passed to the page component as props
                         }];

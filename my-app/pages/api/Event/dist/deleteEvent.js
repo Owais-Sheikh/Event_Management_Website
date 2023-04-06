@@ -39,18 +39,17 @@ exports.__esModule = true;
 var mongoose_1 = require("@/middlayer/mongoose");
 var event_1 = require("@/tables/event");
 var handler = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var getEvent;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 if (!(req.method == 'POST')) return [3 /*break*/, 2];
-                return [4 /*yield*/, event_1["default"].find({ "email": req.body.email })];
+                return [4 /*yield*/, event_1["default"].deleteOne({ 'uniqueId': req.body.uniqueId })];
             case 1:
-                getEvent = _a.sent();
-                res.status(400).json({ success: 'John Doe' });
+                _a.sent();
+                res.status(200).json({ success: 'success' });
                 return [3 /*break*/, 3];
             case 2:
-                res.status(400).json({ error: 'John Doe' });
+                res.status(200).json({ error: 'error' });
                 _a.label = 3;
             case 3: return [2 /*return*/];
         }

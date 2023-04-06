@@ -10,19 +10,17 @@ type Data = {
 
 const handler = async (
     req: NextApiRequest,
-    res: NextApiResponse
+    res: NextApiResponse<Data>
 ) => {
     if (req.method == 'POST') {
         const getEvent = await event.find({ "email": req.body.email });
-        var item:number = 0;
-        // if(getEvent){
-            for(item of getEvent){    
-                console.log(getEvent[item])
-                item++;
-        }
+        res.status(400).json({ success: 'John Doe' })
+
           }      
-        //   else{
-            // res.status(400).json({ error: 'John Doe' })
+    else{
+
+        res.status(400).json({ error: 'John Doe' })
+    }
 
           }
 

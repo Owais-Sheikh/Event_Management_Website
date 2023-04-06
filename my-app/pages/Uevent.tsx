@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect } from 'react'
 import styles from '../styles/event.module.css'
 import style from '../styles/Home.module.css'
@@ -9,23 +8,19 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
-const events = (props:any) => {
+const Uevent = (props:any) => {
   const router = useRouter();
-  useEffect(() => {
-    if(!props.token.value){
-      router.push('http://localhost:3000')
-    }
-    
-  }, [props.token.value, router, router.query])
-  const [name, setname] = useState<string>("")
-  const [email, setemail] = useState<string>('')
-  const [phone, setphone] = useState<string>('')
-  const [eventType, setevenType] = useState<string>('')
-  const [eventdesc, seteventDesc] = useState<string>('')
-  const [eventDate, setdate] = useState<string>('')
-  const [startTime, setStime] = useState<string>('')
-  const [endTime, setEtime] = useState<string>('')
-  const [totalGuest, setTGuest] = useState<string>('')
+  
+  console.log(props.slug.value.uniqueId)
+  const [name, setname] = useState<string>(props.slug.value.name)
+  const [email, setemail] = useState<string>(props.slug.value.email)
+  const [phone, setphone] = useState<string>(props.slug.value.phone)
+  const [eventType, setevenType] = useState<string>(props.slug.value.eventType)
+  const [eventdesc, seteventDesc] = useState<string>(props.slug.value.eventdesc)
+  const [eventDate, setdate] = useState<string>(props.slug.value.eventDate)
+  const [startTime, setStime] = useState<string>(props.slug.value.startTime)
+  const [endTime, setEtime] = useState<string>(props.slug.value.endTime)
+  const [totalGuest, setTGuest] = useState<string>(props.slug.value.totalGuest)
   const setValue = (e: any) => {
     e.preventDefault();
     if (e.target.name == "name") {
@@ -63,8 +58,8 @@ const events = (props:any) => {
   
   const submitInfo = async (e: any) => {
     e.preventDefault();
-    const data = { name, email, phone, eventType, eventdesc, eventDate, startTime, endTime, totalGuest };
-    var res = await fetch('http://localhost:3000/api/Event/addEvent', {
+    const data = {uniqueId : props.slug.value.uniqueId, name, email, phone, eventType, eventdesc, eventDate, startTime, endTime, totalGuest };
+    var res = await fetch('http://localhost:3000/api/Event/updateEvent', {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +69,7 @@ const events = (props:any) => {
     var responce = await res.json();
     console.log(responce)
     if (responce.success) {
-      toast.success('Event Created Successfully 😍', {
+      toast.success('Event Updated Successfully 😍', {
         position: "top-left",
         autoClose: 2000,
         hideProgressBar: false,
@@ -85,11 +80,11 @@ const events = (props:any) => {
         theme: "dark",
       });
       setTimeout(() => {
-        router.push('http://localhost:3000/myEvents')
+        router.push(`http://localhost:3000/Events/${props.slug.value.uniqueId}`)
       }, 2000);
     }
     else {
-      toast.error('Date not available 😔', {
+      toast.error("Event can't be updated 😔", {
         position: "top-left",
         autoClose: 2000,
         hideProgressBar: false,
@@ -100,15 +95,7 @@ const events = (props:any) => {
         theme: "dark",
       });
     }
-    setname('');
-    setemail('');
-    setevenType('');
-    seteventDesc('');
-    setphone('');
-    setStime('');
-    setEtime('');
-    setdate('');
-    setTGuest('');
+    
   }
   return (
     <div className="px-16 container bg-fixed bg-cover bg-center bg-[url('../public/aditya-chinchure-ZhQCZjr9fHo-unsplash.jpg')] h-64 md:h-96">
@@ -125,7 +112,7 @@ const events = (props:any) => {
         theme="dark"
       />
       <h1 className='text-2xl md:text-5xl pt-40 ml-10 font-bold md:font-bold mb-7 md:mb-10 text-white'>Event</h1>
-      <h1 className='mt-44 md:mt-64 text-center text-2xl md:text-4xl font-bold'>Create Event</h1>
+      <h1 className='mt-44 md:mt-64 text-center text-2xl md:text-4xl font-bold'>Update Event</h1>
       <div className='mt-2 h-1 md:mb-20 mb-10 rounded-sm w-32 mx-auto bg-green-600'></div>
       <div className='mt-20 flex justify-center items-center flex-wrap'>
 
@@ -144,7 +131,7 @@ const events = (props:any) => {
           <input className={`${styles.input} mr-10 mb-14`} onChange={setValue} value={eventType} name="EventType" type="text" required /></div>
         <div className='flex items-start flex-col'>
           <label className='mb-2 text-green-800 font-semibold' htmlFor="">Event Description</label>
-          <textarea className={`${styles.input} mr-10 mb-14`} onChange={setValue} value={eventdesc} name="Desc" cols={50} rows={6} required /></div>
+          <textarea className={`${styles.input} mr-10 mb-14`} onChange={setValue} value={eventdesc} name="Desc" cols={50} rows={6} /></div>
         <div className='flex items-start flex-col'>
           <label className='mb-2 text-green-800 font-semibold' htmlFor="">Event Date</label>
           <input className={`${styles.input} mr-10 mb-14`} onChange={setValue} value={eventDate} name="date" type="date" required /></div>
@@ -157,11 +144,11 @@ const events = (props:any) => {
         <div className='flex items-start flex-col'>
           <label className='mb-2 text-green-800 font-semibold' htmlFor="">Total Guest</label>
           <input className={`${styles.input} mr-10 mb-14`} onChange={setValue} value={totalGuest} name="TGuest" type="number" required /></div>
-        <button onClick={submitInfo} className={`${style.btn} mb-10`}> Book Event </button>
+        <button onClick={submitInfo} className={`${style.btn} mb-10`}> Update Event </button>
 
       </div>
     </div>
   )
 }
 
-export default events
+export default Uevent

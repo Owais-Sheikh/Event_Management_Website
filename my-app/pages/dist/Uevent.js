@@ -36,7 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-/* eslint-disable react-hooks/rules-of-hooks */
 var react_1 = require("react");
 var event_module_css_1 = require("../styles/event.module.css");
 var Home_module_css_1 = require("../styles/Home.module.css");
@@ -44,22 +43,18 @@ var react_2 = require("react");
 var router_1 = require("next/router");
 var react_toastify_1 = require("react-toastify");
 require("react-toastify/dist/ReactToastify.css");
-var events = function (props) {
+var Uevent = function (props) {
     var router = router_1.useRouter();
-    react_1.useEffect(function () {
-        if (!props.token.value) {
-            router.push('http://localhost:3000');
-        }
-    }, [props.token.value, router, router.query]);
-    var _a = react_2.useState(""), name = _a[0], setname = _a[1];
-    var _b = react_2.useState(''), email = _b[0], setemail = _b[1];
-    var _c = react_2.useState(''), phone = _c[0], setphone = _c[1];
-    var _d = react_2.useState(''), eventType = _d[0], setevenType = _d[1];
-    var _e = react_2.useState(''), eventdesc = _e[0], seteventDesc = _e[1];
-    var _f = react_2.useState(''), eventDate = _f[0], setdate = _f[1];
-    var _g = react_2.useState(''), startTime = _g[0], setStime = _g[1];
-    var _h = react_2.useState(''), endTime = _h[0], setEtime = _h[1];
-    var _j = react_2.useState(''), totalGuest = _j[0], setTGuest = _j[1];
+    console.log(props.slug.value.uniqueId);
+    var _a = react_2.useState(props.slug.value.name), name = _a[0], setname = _a[1];
+    var _b = react_2.useState(props.slug.value.email), email = _b[0], setemail = _b[1];
+    var _c = react_2.useState(props.slug.value.phone), phone = _c[0], setphone = _c[1];
+    var _d = react_2.useState(props.slug.value.eventType), eventType = _d[0], setevenType = _d[1];
+    var _e = react_2.useState(props.slug.value.eventdesc), eventdesc = _e[0], seteventDesc = _e[1];
+    var _f = react_2.useState(props.slug.value.eventDate), eventDate = _f[0], setdate = _f[1];
+    var _g = react_2.useState(props.slug.value.startTime), startTime = _g[0], setStime = _g[1];
+    var _h = react_2.useState(props.slug.value.endTime), endTime = _h[0], setEtime = _h[1];
+    var _j = react_2.useState(props.slug.value.totalGuest), totalGuest = _j[0], setTGuest = _j[1];
     var setValue = function (e) {
         e.preventDefault();
         if (e.target.name == "name") {
@@ -98,8 +93,8 @@ var events = function (props) {
             switch (_a.label) {
                 case 0:
                     e.preventDefault();
-                    data = { name: name, email: email, phone: phone, eventType: eventType, eventdesc: eventdesc, eventDate: eventDate, startTime: startTime, endTime: endTime, totalGuest: totalGuest };
-                    return [4 /*yield*/, fetch('http://localhost:3000/api/Event/addEvent', {
+                    data = { uniqueId: props.slug.value.uniqueId, name: name, email: email, phone: phone, eventType: eventType, eventdesc: eventdesc, eventDate: eventDate, startTime: startTime, endTime: endTime, totalGuest: totalGuest };
+                    return [4 /*yield*/, fetch('http://localhost:3000/api/Event/updateEvent', {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
@@ -113,7 +108,7 @@ var events = function (props) {
                     responce = _a.sent();
                     console.log(responce);
                     if (responce.success) {
-                        react_toastify_1.toast.success('Event Created Successfully 😍', {
+                        react_toastify_1.toast.success('Event Updated Successfully 😍', {
                             position: "top-left",
                             autoClose: 2000,
                             hideProgressBar: false,
@@ -124,11 +119,11 @@ var events = function (props) {
                             theme: "dark"
                         });
                         setTimeout(function () {
-                            router.push('http://localhost:3000/myEvents');
+                            router.push("http://localhost:3000/Events/" + props.slug.value.uniqueId);
                         }, 2000);
                     }
                     else {
-                        react_toastify_1.toast.error('Date not available 😔', {
+                        react_toastify_1.toast.error("Event can't be updated 😔", {
                             position: "top-left",
                             autoClose: 2000,
                             hideProgressBar: false,
@@ -139,15 +134,6 @@ var events = function (props) {
                             theme: "dark"
                         });
                     }
-                    setname('');
-                    setemail('');
-                    setevenType('');
-                    seteventDesc('');
-                    setphone('');
-                    setStime('');
-                    setEtime('');
-                    setdate('');
-                    setTGuest('');
                     return [2 /*return*/];
             }
         });
@@ -155,7 +141,7 @@ var events = function (props) {
     return (react_1["default"].createElement("div", { className: "px-16 container bg-fixed bg-cover bg-center bg-[url('../public/aditya-chinchure-ZhQCZjr9fHo-unsplash.jpg')] h-64 md:h-96" },
         react_1["default"].createElement(react_toastify_1.ToastContainer, { position: "top-left", autoClose: 5000, hideProgressBar: false, newestOnTop: false, closeOnClick: true, rtl: false, pauseOnFocusLoss: true, draggable: true, pauseOnHover: true, theme: "dark" }),
         react_1["default"].createElement("h1", { className: 'text-2xl md:text-5xl pt-40 ml-10 font-bold md:font-bold mb-7 md:mb-10 text-white' }, "Event"),
-        react_1["default"].createElement("h1", { className: 'mt-44 md:mt-64 text-center text-2xl md:text-4xl font-bold' }, "Create Event"),
+        react_1["default"].createElement("h1", { className: 'mt-44 md:mt-64 text-center text-2xl md:text-4xl font-bold' }, "Update Event"),
         react_1["default"].createElement("div", { className: 'mt-2 h-1 md:mb-20 mb-10 rounded-sm w-32 mx-auto bg-green-600' }),
         react_1["default"].createElement("div", { className: 'mt-20 flex justify-center items-center flex-wrap' },
             react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
@@ -172,7 +158,7 @@ var events = function (props) {
                 react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: eventType, name: "EventType", type: "text", required: true })),
             react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
                 react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Event Description"),
-                react_1["default"].createElement("textarea", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: eventdesc, name: "Desc", cols: 50, rows: 6, required: true })),
+                react_1["default"].createElement("textarea", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: eventdesc, name: "Desc", cols: 50, rows: 6 })),
             react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
                 react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Event Date"),
                 react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: eventDate, name: "date", type: "date", required: true })),
@@ -185,6 +171,6 @@ var events = function (props) {
             react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
                 react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Total Guest"),
                 react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: totalGuest, name: "TGuest", type: "number", required: true })),
-            react_1["default"].createElement("button", { onClick: submitInfo, className: Home_module_css_1["default"].btn + " mb-10" }, " Book Event "))));
+            react_1["default"].createElement("button", { onClick: submitInfo, className: Home_module_css_1["default"].btn + " mb-10" }, " Update Event "))));
 };
-exports["default"] = events;
+exports["default"] = Uevent;

@@ -79,10 +79,10 @@ const Navbar = (props:any) => {
           <NavItem href="/contact" label="Contact" active={router.pathname === "/contact"} />
         </ul>
         {props.token.value && <MdAccountCircle onMouseOver={()=>{setdropdown(true)}} onMouseLeave={()=>{setdropdown(false)}} className='text-3xl text-white cursor-pointer' />}
-        {props.token.value && dropdown && <div onMouseOver={()=>{setdropdown(true)}} onMouseLeave={()=>{setdropdown(false)}} className="bg-white absolute right-5 top-11 p-4">
+        {dropdown && <div onMouseOver={()=>{setdropdown(true)}} onMouseLeave={()=>{setdropdown(false)}} className="bg-white absolute right-5 top-11 p-4">
           <ul>
             <li className="cursor-pointer hover:text-gray-500 text-black font-bold text-sm mb-2">My Account</li>
-            <Link href={'/myEvents'}><li className="cursor-pointer hover:text-gray-500 text-black font-bold text-sm mb-2">My Events</li></Link>
+            <Link href={props.token.value? '/myEvents':'/Login'}><li className="cursor-pointer hover:text-gray-500 text-black font-bold text-sm mb-2">My Events</li></Link>
             <li onClick={props.logOut} className="cursor-pointer hover:text-gray-500 text-black font-bold  text-sm">LogOut</li>
           </ul>
         </div>}

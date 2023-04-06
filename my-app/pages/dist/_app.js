@@ -19,10 +19,15 @@ function App(_a) {
     var Component = _a.Component, pageProps = _a.pageProps;
     var router = router_1.useRouter();
     var _b = react_1.useState({ value: null }), token = _b[0], settoken = _b[1];
+    var _c = react_1.useState({ value: {} }), eventSlug = _c[0], setslug = _c[1];
     react_1.useEffect(function () {
         var tkn = localStorage.getItem("token");
+        var event = localStorage.getItem("slug");
         if (tkn) {
             settoken({ value: tkn });
+        }
+        if (event) {
+            setslug({ value: JSON.parse(event) });
         }
     }, [router.query]);
     var logOut = function () {
@@ -31,6 +36,6 @@ function App(_a) {
     };
     return React.createElement(React.Fragment, null,
         React.createElement(navbar_1["default"], { logOut: logOut, token: token }),
-        React.createElement(Component, __assign({}, pageProps, { token: token })));
+        React.createElement(Component, __assign({}, pageProps, { token: token, slug: eventSlug })));
 }
 exports["default"] = App;
