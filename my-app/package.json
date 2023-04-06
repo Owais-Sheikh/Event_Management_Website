@@ -22,10 +22,12 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
+    "react-phone-input-2": "^2.15.1",
     "react-toastify": "^9.1.2",
     "sidebarjs": "^10.0.0",
     "slider-pro-js": "^1.0.1",
-    "typescript": "5.0.2"
+    "typescript": "5.0.2",
+    "validator": "^13.9.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",

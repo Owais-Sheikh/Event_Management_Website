@@ -37,6 +37,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var react_1 = require("react");
+var react_phone_input_2_1 = require("react-phone-input-2");
+require("react-phone-input-2/lib/style.css");
 var event_module_css_1 = require("../styles/event.module.css");
 var Home_module_css_1 = require("../styles/Home.module.css");
 var react_2 = require("react");
@@ -143,34 +145,35 @@ var Uevent = function (props) {
         react_1["default"].createElement("h1", { className: 'text-2xl md:text-5xl pt-40 ml-10 font-bold md:font-bold mb-7 md:mb-10 text-white' }, "Event"),
         react_1["default"].createElement("h1", { className: 'mt-44 md:mt-64 text-center text-2xl md:text-4xl font-bold' }, "Update Event"),
         react_1["default"].createElement("div", { className: 'mt-2 h-1 md:mb-20 mb-10 rounded-sm w-32 mx-auto bg-green-600' }),
-        react_1["default"].createElement("div", { className: 'mt-20 flex justify-center items-center flex-wrap' },
-            react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
-                react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Name"),
-                react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: name, name: "name", type: "text", required: true })),
-            react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
-                react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Email"),
-                react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: email, name: "email", type: "email", required: true })),
-            react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
-                react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Phone"),
-                react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: phone, name: "phone", type: "tel", required: true })),
-            react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
-                react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Event Type"),
-                react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: eventType, name: "EventType", type: "text", required: true })),
-            react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
-                react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Event Description"),
-                react_1["default"].createElement("textarea", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: eventdesc, name: "Desc", cols: 50, rows: 6 })),
-            react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
-                react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Event Date"),
-                react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: eventDate, name: "date", type: "date", required: true })),
-            react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
-                react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Start Time"),
-                react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: startTime, name: "STime", type: "time", required: true })),
-            react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
-                react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "End Time"),
-                react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: endTime, name: "ETime", type: "time", required: true })),
-            react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
-                react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Total Guest"),
-                react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: totalGuest, name: "TGuest", type: "number", required: true })),
-            react_1["default"].createElement("button", { onClick: submitInfo, className: Home_module_css_1["default"].btn + " mb-10" }, " Update Event "))));
+        react_1["default"].createElement("form", { action: "", onSubmit: submitInfo },
+            react_1["default"].createElement("div", { className: 'mt-20 flex justify-center items-center flex-wrap' },
+                react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
+                    react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Name"),
+                    react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, minLength: 5, maxLength: 50, value: name, name: "name", type: "text", required: true })),
+                react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
+                    react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Email"),
+                    react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: email, name: "email", type: "email", required: true })),
+                react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
+                    react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Phone"),
+                    react_1["default"].createElement(react_phone_input_2_1["default"], { className: event_module_css_1["default"].input + " mr-10 mb-14", country: 'pk', value: phone, onChange: function (phone) { return setphone(phone); } })),
+                react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
+                    react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Event Type"),
+                    react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: eventType, name: "EventType", type: "text", required: true })),
+                react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
+                    react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Event Description"),
+                    react_1["default"].createElement("textarea", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: eventdesc, name: "Desc", cols: 50, rows: 6 })),
+                react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
+                    react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Event Date"),
+                    react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: eventDate, name: "date", type: "date", required: true })),
+                react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
+                    react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Start Time"),
+                    react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: startTime, name: "STime", type: "time", required: true })),
+                react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
+                    react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "End Time"),
+                    react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: endTime, name: "ETime", type: "time", required: true })),
+                react_1["default"].createElement("div", { className: 'flex items-start flex-col' },
+                    react_1["default"].createElement("label", { className: 'mb-2 text-green-800 font-semibold', htmlFor: "" }, "Total Guest"),
+                    react_1["default"].createElement("input", { className: event_module_css_1["default"].input + " mr-10 mb-14", onChange: setValue, value: totalGuest, name: "TGuest", type: "number", required: true })),
+                react_1["default"].createElement("button", { type: 'submit', className: Home_module_css_1["default"].btn + " mb-10" }, " Update Event ")))));
 };
 exports["default"] = Uevent;

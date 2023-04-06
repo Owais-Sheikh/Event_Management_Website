@@ -21,7 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.query])
   const logOut = ()=>{
     localStorage.removeItem("token");
+    localStorage.removeItem("slug")
     settoken({value:null})
+    setslug({value:{}})
   }
   
   return <>

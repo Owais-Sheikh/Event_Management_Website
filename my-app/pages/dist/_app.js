@@ -32,7 +32,9 @@ function App(_a) {
     }, [router.query]);
     var logOut = function () {
         localStorage.removeItem("token");
+        localStorage.removeItem("slug");
         settoken({ value: null });
+        setslug({ value: {} });
     };
     return React.createElement(React.Fragment, null,
         React.createElement(navbar_1["default"], { logOut: logOut, token: token }),

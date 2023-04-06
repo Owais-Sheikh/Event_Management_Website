@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 import styles from '../styles/event.module.css'
 import style from '../styles/Home.module.css'
 import { useState } from 'react'
@@ -114,18 +116,19 @@ const Uevent = (props:any) => {
       <h1 className='text-2xl md:text-5xl pt-40 ml-10 font-bold md:font-bold mb-7 md:mb-10 text-white'>Event</h1>
       <h1 className='mt-44 md:mt-64 text-center text-2xl md:text-4xl font-bold'>Update Event</h1>
       <div className='mt-2 h-1 md:mb-20 mb-10 rounded-sm w-32 mx-auto bg-green-600'></div>
+      <form action="" onSubmit={submitInfo}>
       <div className='mt-20 flex justify-center items-center flex-wrap'>
 
         <div className='flex items-start flex-col'>
 
           <label className='mb-2 text-green-800 font-semibold' htmlFor="">Name</label>
-          <input className={`${styles.input} mr-10 mb-14`} onChange={setValue} value={name} name="name" type="text" required /></div>
+          <input className={`${styles.input} mr-10 mb-14`} onChange={setValue} minLength={5} maxLength={50} value={name} name="name" type="text" required /></div>
         <div className='flex items-start flex-col'>
           <label className='mb-2 text-green-800 font-semibold' htmlFor="">Email</label>
           <input className={`${styles.input} mr-10 mb-14`} onChange={setValue} value={email} name="email" type="email" required /></div>
         <div className='flex items-start flex-col'>
           <label className='mb-2 text-green-800 font-semibold' htmlFor="">Phone</label>
-          <input className={`${styles.input} mr-10 mb-14`} onChange={setValue} value={phone} name="phone" type="tel" required /></div>
+          <PhoneInput className={`${styles.input} mr-10 mb-14`} country={'pk'} value={phone} onChange={phone => setphone(phone)}/></div>
         <div className='flex items-start flex-col'>
           <label className='mb-2 text-green-800 font-semibold' htmlFor="">Event Type</label>
           <input className={`${styles.input} mr-10 mb-14`} onChange={setValue} value={eventType} name="EventType" type="text" required /></div>
@@ -144,9 +147,10 @@ const Uevent = (props:any) => {
         <div className='flex items-start flex-col'>
           <label className='mb-2 text-green-800 font-semibold' htmlFor="">Total Guest</label>
           <input className={`${styles.input} mr-10 mb-14`} onChange={setValue} value={totalGuest} name="TGuest" type="number" required /></div>
-        <button onClick={submitInfo} className={`${style.btn} mb-10`}> Update Event </button>
+        <button type='submit' className={`${style.btn} mb-10`}> Update Event </button>
 
       </div>
+      </form>
     </div>
   )
 }
