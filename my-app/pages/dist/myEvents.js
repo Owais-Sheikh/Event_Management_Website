@@ -39,6 +39,8 @@ exports.__esModule = true;
 exports.getServerSideProps = void 0;
 /* eslint-disable react-hooks/rules-of-hooks */
 var sort_by_1 = require("sort-by");
+var jsdom = require('jsdom');
+var $ = require('jquery')(new jsdom.JSDOM().window);
 var react_1 = require("react");
 var mongoose_1 = require("mongoose");
 var event_1 = require("@/tables/event");
@@ -56,7 +58,7 @@ var myEvents = function (props) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     var _a = react_1.useState(true), sorting = _a[0], setsorting = _a[1];
     var _b = react_1.useState(false), dropFilter = _b[0], setdropFilter = _b[1];
-    console.log(props.event);
+    var _c = react_1.useState(false), droplearn = _c[0], setdroplearn = _c[1];
     var c = Object.values(props.event);
     var sortByName = function () {
         var byName = c.sort(function (a, b) {
@@ -70,6 +72,9 @@ var myEvents = function (props) {
         var byDate = c.sort(sort_by_1["default"]('eventDate'));
         return byDate;
     };
+    $('#sort').hover(function () {
+        $('#learnMore').hide();
+    });
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement("div", { className: 'flex flex-row justify-center items-center mt-20' },
             react_1["default"].createElement("div", { className: 'mr-20' },
@@ -85,7 +90,7 @@ var myEvents = function (props) {
                     sorting && Object.keys(sortByName()).map(function (item) {
                         return react_1["default"].createElement(link_1["default"], { href: "http://localhost:3000/Events/" + sortByName()[item].uniqueId, key: sortByName()[item]._id, className: "p-4 md:w-1/3" },
                             react_1["default"].createElement("div", null,
-                                react_1["default"].createElement("div", { className: "h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden" },
+                                react_1["default"].createElement("div", { id: 'sort', className: 'hover:opacity-40 h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden' },
                                     react_1["default"].createElement("img", { className: "lg:h-48 md:h-36 w-full object-cover object-center", src: "https://dummyimage.com/720x400", alt: "blog" }),
                                     react_1["default"].createElement("div", { className: "p-6" },
                                         react_1["default"].createElement("h2", { className: "tracking-widest text-xs title-font font-medium text-gray-400 mb-1" }, "CATEGORY"),
@@ -94,7 +99,7 @@ var myEvents = function (props) {
                                             sortByName()[item].eventdesc.substr(0, 100),
                                             "..."),
                                         react_1["default"].createElement("div", { className: "flex items-center flex-wrap " },
-                                            react_1["default"].createElement("div", { className: "text-green-500 inline-flex items-center md:mb-2 lg:mb-0" },
+                                            react_1["default"].createElement("div", { id: 'learnMore', className: "text-green-500 inline-flex items-center md:mb-2 lg:mb-0" },
                                                 "Learn More",
                                                 react_1["default"].createElement("svg", { className: "w-4 h-4 ml-2", viewBox: "0 0 24 24", stroke: "currentColor", strokeWidth: "2", fill: "none", strokeLinecap: "round", strokeLinejoin: "round" },
                                                     react_1["default"].createElement("path", { d: "M5 12h14" }),
