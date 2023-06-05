@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import SortBy from 'sort-by'
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import mongoose from "mongoose";
 import event from '@/tables/event'
@@ -57,7 +58,7 @@ const myEvents = (props: any):any => {
           {sorting && Object.keys(sortByName()).map((item: any) => {
             return <Link href={`http://localhost:3000/Events/${sortByName()[item].uniqueId}`} key={sortByName()[item]._id} className="p-4 md:w-1/3" ><div>
               <div id='sort' className='hover:opacity-40 h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden'>
-                <img className="lg:h-48 md:h-36 w-full object-cover object-center" src="https://dummyimage.com/720x400" alt="blog" />
+                <Image className="lg:h-48 md:h-36 w-full object-cover object-center" src="https://dummyimage.com/720x400" alt="blog" />
                 <div className="p-6">
                   <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
                   <h1 className="title-font text-lg font-medium text-gray-900 mb-3">{sortByName()[item].eventType}</h1>
@@ -84,7 +85,7 @@ const myEvents = (props: any):any => {
           {!sorting && Object.keys(sortByDate()).map((item: any) => {
             return <Link key={sortByDate()[item]._id} href={`http://localhost:3000/Events/${sortByDate()[item].uniqueId}`} className="p-4 md:w-1/3"><div>
               <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                <img className="lg:h-48 md:h-36 w-full object-cover object-center" src="https://dummyimage.com/720x400" alt="blog" />
+                <Image className="lg:h-48 md:h-36 w-full object-cover object-center" src="https://dummyimage.com/720x400" alt="blog" />
                 <div className="p-6">
                   <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
                   <h1 className="title-font text-lg font-medium text-gray-900 mb-3">{sortByDate()[item].eventType}</h1>
@@ -115,7 +116,8 @@ const myEvents = (props: any):any => {
 }
 export async function getServerSideProps() {
   if (!mongoose.connections[0].readyState) {
-    await mongoose.connect(process.env.MONGODB_URI)
+    var c:any = process.env.MONGODB_URI;
+    await mongoose.connect(c)
   }
   const getEvent = await event.find({ "email": "owaisshk1501@gmail.com" });
   

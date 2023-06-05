@@ -39,8 +39,7 @@ exports.__esModule = true;
 exports.getServerSideProps = void 0;
 /* eslint-disable react-hooks/rules-of-hooks */
 var sort_by_1 = require("sort-by");
-var jsdom = require('jsdom');
-var $ = require('jquery')(new jsdom.JSDOM().window);
+var image_1 = require("next/image");
 var react_1 = require("react");
 var mongoose_1 = require("mongoose");
 var event_1 = require("@/tables/event");
@@ -72,9 +71,6 @@ var myEvents = function (props) {
         var byDate = c.sort(sort_by_1["default"]('eventDate'));
         return byDate;
     };
-    $('#sort').hover(function () {
-        $('#learnMore').hide();
-    });
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement("div", { className: 'flex flex-row justify-center items-center mt-20' },
             react_1["default"].createElement("div", { className: 'mr-20' },
@@ -91,7 +87,7 @@ var myEvents = function (props) {
                         return react_1["default"].createElement(link_1["default"], { href: "http://localhost:3000/Events/" + sortByName()[item].uniqueId, key: sortByName()[item]._id, className: "p-4 md:w-1/3" },
                             react_1["default"].createElement("div", null,
                                 react_1["default"].createElement("div", { id: 'sort', className: 'hover:opacity-40 h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden' },
-                                    react_1["default"].createElement("img", { className: "lg:h-48 md:h-36 w-full object-cover object-center", src: "https://dummyimage.com/720x400", alt: "blog" }),
+                                    react_1["default"].createElement(image_1["default"], { className: "lg:h-48 md:h-36 w-full object-cover object-center", src: "https://dummyimage.com/720x400", alt: "blog" }),
                                     react_1["default"].createElement("div", { className: "p-6" },
                                         react_1["default"].createElement("h2", { className: "tracking-widest text-xs title-font font-medium text-gray-400 mb-1" }, "CATEGORY"),
                                         react_1["default"].createElement("h1", { className: "title-font text-lg font-medium text-gray-900 mb-3" }, sortByName()[item].eventType),
@@ -111,7 +107,7 @@ var myEvents = function (props) {
                         return react_1["default"].createElement(link_1["default"], { key: sortByDate()[item]._id, href: "http://localhost:3000/Events/" + sortByDate()[item].uniqueId, className: "p-4 md:w-1/3" },
                             react_1["default"].createElement("div", null,
                                 react_1["default"].createElement("div", { className: "h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden" },
-                                    react_1["default"].createElement("img", { className: "lg:h-48 md:h-36 w-full object-cover object-center", src: "https://dummyimage.com/720x400", alt: "blog" }),
+                                    react_1["default"].createElement(image_1["default"], { className: "lg:h-48 md:h-36 w-full object-cover object-center", src: "https://dummyimage.com/720x400", alt: "blog" }),
                                     react_1["default"].createElement("div", { className: "p-6" },
                                         react_1["default"].createElement("h2", { className: "tracking-widest text-xs title-font font-medium text-gray-400 mb-1" }, "CATEGORY"),
                                         react_1["default"].createElement("h1", { className: "title-font text-lg font-medium text-gray-900 mb-3" }, sortByDate()[item].eventType),
@@ -128,12 +124,13 @@ var myEvents = function (props) {
 };
 function getServerSideProps() {
     return __awaiter(this, void 0, void 0, function () {
-        var getEvent;
+        var c, getEvent;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     if (!!mongoose_1["default"].connections[0].readyState) return [3 /*break*/, 2];
-                    return [4 /*yield*/, mongoose_1["default"].connect(process.env.MONGODB_URI)];
+                    c = process.env.MONGODB_URI;
+                    return [4 /*yield*/, mongoose_1["default"].connect(c)];
                 case 1:
                     _a.sent();
                     _a.label = 2;
